@@ -5,19 +5,19 @@ inputs:
   crowdinApiToken:
     description: "Crowdin API Token"
     required: true
-    type: string
   crowdinBranch:
     description: "Crowdin branch"
     required: true
-    type: string
 
 runs:
   using: "composite"
   steps:
     - name: Install Crowdin CLI
+      shell: bash
       run: npm i -g @crowdin/cli
 
     - name: Pre-translate with TM
+      shell: bash
       env:
         CROWDIN_API_TOKEN: ${{ inputs.crowdinApiToken }}
       run: |
@@ -30,6 +30,7 @@ runs:
           --plain
 
     - name: Pre-translate with MT
+      shell: bash
       env:
         CROWDIN_API_TOKEN: ${{ inputs.crowdinApiToken }}
       run: |
